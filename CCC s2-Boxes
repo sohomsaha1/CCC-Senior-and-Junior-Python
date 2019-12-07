@@ -1,0 +1,42 @@
+numBox = int(input())
+boxes = []
+for i in range(numBox):
+    temp = input()
+    x = []
+    for k in temp.split(" "):
+        x.append(int(k))
+    boxes.append(x)
+numItems = int(input())
+items = []
+for ii in range(numItems):
+    temp1 = input()
+    x1 = []
+    for k1 in temp1.split(" "):
+        x1.append(int(k1))
+    items.append(x1)
+def check(list11,list22):
+    list11.sort()
+    list22.sort()
+    for i in range(len(list11)):
+        if list22[i] < list11[i]:
+            return False
+    return True
+def prod(x):
+    sum1 = 1
+    for y in x:
+        sum1*=y
+    return sum1
+min1 = 10000000000000
+array = []
+for k in items:
+    min1 = 10000000000000
+    for i in boxes:
+        if check(k,i):
+            if prod(i) < min1:
+                min1 = prod(i)
+    array.append(min1)
+for i in array:
+    if i == 10000000000000:
+        print("Item does not fit.")
+    else:
+        print(i)
