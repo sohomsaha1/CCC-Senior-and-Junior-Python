@@ -1,0 +1,66 @@
+# Sohom Saha
+# 073818098
+# Sept 23 2019
+# CCC plane gates
+
+
+g = int(input())
+p = int(input())
+gates = [x for x in range(1,g+1)]
+array = [int(input()) for k in range(p)]
+
+def gate(array1):
+  g = gates
+  array12 = []
+  for k in g:
+    if k not in array1:
+      array12.append(k)
+  
+  return array12
+      
+def availableGates(array):
+  available = int(len(gate(array)))
+  xd = gate(array)
+  g = gates
+  gatesTaken = []
+  dockedPlanes = []
+
+  for k in array:
+      if len(dockedPlanes) == len(g):
+        return len(dockedPlanes)
+      
+      else:
+        if k not in gatesTaken and k in g:
+          dockedPlanes.append(k)
+          gatesTaken.append(k)
+          if array.index(k) < (len(array)-1) and array[(array.index(k))+1] == k and k in gatesTaken and array.index(k) > 0:
+            return len(dockedPlanes)
+        else:
+          if array.count(k) == 1 and k not in xd and k not in g:
+            dockedPlanes.append(k)
+            gatesTaken.append(xd[0])
+            xd.remove(xd[0])
+            available -=1
+          else:
+            if array.count(k) > 1 and array.count(k) > dockedPlanes.count(k) and available > 0:
+              gatesTaken.append(xd[0])
+              dockedPlanes.append(k)
+              available -=1
+
+            else:
+              if k in g and k not in gatesTaken:
+                gatesTaken.append(k)
+                dockedPlanes.append(k)
+                        
+              else:
+                if k in gatesTaken:
+                  return len(dockedPlanes)
+                else:
+                    dockedPlanes.append(k)
+                    return len(dockedPlanes)
+  return len(dockedPlanes)
+            
+
+print(availableGates(array)) 
+  
+
