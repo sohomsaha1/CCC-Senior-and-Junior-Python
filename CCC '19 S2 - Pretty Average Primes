@@ -1,0 +1,14 @@
+x1 = int(input())
+x2 = [2*(int(input())) for oo in range(x1)]
+s = {2,3}
+def p(n):
+  if n in s: return True
+  for x in range(3,int(n**(0.5)+1),2):
+    if n % x == 0: return False
+  s.add(n)
+  return True
+for n in x2:
+  for xd in range(3,n//2,2):
+    if p(xd) and p(n-xd):
+      print(xd,(n-xd))
+      break
